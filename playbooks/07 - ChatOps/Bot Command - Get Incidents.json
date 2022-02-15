@@ -1,0 +1,201 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Bot Command - Get Incidents",
+    "aliasName": null,
+    "tag": null,
+    "description": "Retrieves details of a specific incident based on the provided incident ID.",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "IncidentID",
+        "AlertURL",
+        "content",
+        "commentIRI"
+    ],
+    "synchronous": false,
+    "lastModifyDate": 1644923098,
+    "collection": "\/api\/3\/workflow_collections\/73f87b6d-26fe-4c47-80cb-bc671717c5eb",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/7cfd5bf3-2da3-4773-b3ab-78aefd0ba967",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Display Incidents Details",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "content": "<p>{{vars.input.params.content}}<\/p>\n<p>&nbsp;<\/p>\n<p><span style=\"color: #33cccc; background-color: #333333;\"><strong><em>Incidents Details :<\/em><\/strong><\/span><\/p>\n<p>&nbsp;<\/p>\n<table border=\"2\">\n<tbody>\n<tr>\n<td width=\"20%\">Name<\/td>\n<td>{{vars.steps.Get_Incident_Details[0].name}}<\/td>\n<\/tr>\n<tr>\n<td width=\"20%\">Description<\/td>\n<td>{{vars.steps.Get_Incident_Details[0].description}}<\/td>\n<\/tr>\n<tr>\n<td>Incident Link<\/td>\n<td><a href=\"https:\/\/{{globalVars.Server_fqhn}}\/modules\/incidents\/{{vars.steps.Get_Incident_Details[0].uuid}}\">Incident #{{vars.input.params.IncidentID}}<\/a><\/td>\n<\/tr>\n<\/tbody>\n<\/table>"
+                },
+                "_showJson": true,
+                "operation": "Overwrite",
+                "collection": "{{vars.input.params.commentIRI}}",
+                "__recommend": [],
+                "tagsOperation": "OverwriteTags",
+                "collectionType": "\/api\/3\/comments",
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "30",
+            "left": "1100",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "uuid": "437dcefb-079c-45dc-a56b-8c499bf8bdf3"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Incident Details",
+            "description": null,
+            "arguments": {
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "primitive",
+                            "field": "id",
+                            "value": "{{vars.input.params.IncidentID | int | abs}}",
+                            "operator": "eq",
+                            "_operator": "eq"
+                        }
+                    ]
+                },
+                "module": "incidents?$limit=30",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "110",
+            "left": "450",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "uuid": "241b5fb6-17d8-4ba9-b0bc-2758c51ba8db"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Incident Not Found",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "content": "<p>{{vars.input.params.content}}<\/p>\n<p>&nbsp;<\/p>\n<p><span style=\"color: #33cccc; background-color: #333333;\"><em><strong>Incident Not Found&nbsp;<\/strong><\/em><\/span><\/p>"
+                },
+                "_showJson": false,
+                "operation": "Overwrite",
+                "collection": "{{vars.input.params.commentIRI}}",
+                "__recommend": [],
+                "tagsOperation": "OverwriteTags",
+                "collectionType": "\/api\/3\/comments",
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "190",
+            "left": "1100",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "uuid": "e6f470ec-f97b-4b9a-bd18-ad733d71b0a2"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Check If Incident Found",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Yes",
+                        "step_iri": "\/api\/3\/workflow_steps\/437dcefb-079c-45dc-a56b-8c499bf8bdf3",
+                        "condition": "{{ vars.steps.Get_Incident_Details | length > 0 }}"
+                    },
+                    {
+                        "option": "No",
+                        "step_iri": "\/api\/3\/workflow_steps\/e6f470ec-f97b-4b9a-bd18-ad733d71b0a2",
+                        "condition": "{{ vars.steps.Get_Incident_Details | length <= 0 }}"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "110",
+            "left": "775",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "uuid": "c51306e4-deaa-4a2f-8616-ce14a42dcb47"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": {
+                            "content": "{{ vars.content }}",
+                            "AlertURL": "{{ vars.AlertURL }}",
+                            "IncidentID": "{{ vars.IncidentID }}",
+                            "commentIRI": "{{ vars.commentIRI }}"
+                        }
+                    }
+                }
+            },
+            "status": null,
+            "top": "110",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "uuid": "7cfd5bf3-2da3-4773-b3ab-78aefd0ba967"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Check If Incident Found -> Copy  of Incident Not Found 2",
+            "targetStep": "\/api\/3\/workflow_steps\/437dcefb-079c-45dc-a56b-8c499bf8bdf3",
+            "sourceStep": "\/api\/3\/workflow_steps\/c51306e4-deaa-4a2f-8616-ce14a42dcb47",
+            "label": "Yes",
+            "isExecuted": false,
+            "uuid": "a91e53dd-1a9d-4104-844f-7bb17b41fc18"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Incident Details -> Check If Incident Found",
+            "targetStep": "\/api\/3\/workflow_steps\/c51306e4-deaa-4a2f-8616-ce14a42dcb47",
+            "sourceStep": "\/api\/3\/workflow_steps\/241b5fb6-17d8-4ba9-b0bc-2758c51ba8db",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "149edfc0-064d-424c-ab8c-e4e148722f7c"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Check If Incident Found -> Incident Not Found 2",
+            "targetStep": "\/api\/3\/workflow_steps\/e6f470ec-f97b-4b9a-bd18-ad733d71b0a2",
+            "sourceStep": "\/api\/3\/workflow_steps\/c51306e4-deaa-4a2f-8616-ce14a42dcb47",
+            "label": "No",
+            "isExecuted": false,
+            "uuid": "a317e513-e281-4e3b-a3fe-8c297e8ebc12"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Get Incident Details",
+            "targetStep": "\/api\/3\/workflow_steps\/241b5fb6-17d8-4ba9-b0bc-2758c51ba8db",
+            "sourceStep": "\/api\/3\/workflow_steps\/7cfd5bf3-2da3-4773-b3ab-78aefd0ba967",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "59581c7c-2bcb-46a5-af25-ec797ee44054"
+        }
+    ],
+    "priority": null,
+    "uuid": "cabc5f48-6c89-4c9b-b55a-e4e9e9a7bc87",
+    "recordTags": [
+        "Subroutine",
+        "Bot - Execute commands"
+    ],
+    "id": "525",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1644846110.629366,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1644923097.859811,
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null
+}

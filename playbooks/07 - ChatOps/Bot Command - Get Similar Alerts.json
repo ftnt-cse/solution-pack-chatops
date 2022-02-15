@@ -1,0 +1,188 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Bot Command - Get Similar Alerts",
+    "aliasName": null,
+    "tag": null,
+    "description": "Retrieves the alert records that are similar to a specific alert based on the provided alert ID.",
+    "isActive": false,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "CommentID",
+        "AlertID",
+        "commentIRI",
+        "content"
+    ],
+    "synchronous": false,
+    "lastModifyDate": 1644928749,
+    "collection": "\/api\/3\/workflow_collections\/73f87b6d-26fe-4c47-80cb-bc671717c5eb",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/f3509088-067e-4fdf-9776-640cab689200",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Display Similar Alerts",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "alerts": "['{{vars.input.params.AlertID}}']",
+                    "content": "<p><span style=\"color: #ffffff;\">{{vars.input.params.content}}<\/span><\/p>\n<p>&nbsp;<\/p>\n<p><span style=\"color: #33cccc; background-color: #333333;\"><strong>Similar Alerts Details:<\/strong><\/span><\/p>\n<p>&nbsp;<\/p>\n<table border=\"2\">\n<tbody>\n<tr>\n<th width=\"20%\">Alert ID<\/th>\n<th width=\"20%\">Name<\/th>\n<\/tr>\n<tr>\n<td>{{items.id}}<\/td>\n<td>{{items.name}}<\/td>\n<\/tr>\n<\/tbody>\n<\/table>"
+                },
+                "_showJson": false,
+                "operation": "Overwrite",
+                "collection": "{{vars.input.params.commentIRI}}",
+                "tagsOperation": "OverwriteTags",
+                "collectionType": "\/api\/3\/comments",
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "560",
+            "left": "120",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "uuid": "cb3d153f-6d79-4301-b224-3e03b7b4fa9b"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": {
+                            "AlertID": "{{ vars.AlertID }}",
+                            "content": "{{ vars.content }}",
+                            "CommentID": "{{ vars.CommentID }}",
+                            "commentIRI": "{{ vars.commentIRI }}"
+                        }
+                    }
+                }
+            },
+            "status": null,
+            "top": "20",
+            "left": "120",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "uuid": "f3509088-067e-4fdf-9776-640cab689200"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Alert Related Indicators",
+            "description": null,
+            "arguments": {
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "primitive",
+                            "field": "comments.id",
+                            "value": "{{vars.input.params.CommentID}}",
+                            "operator": "eq",
+                            "_operator": "eq"
+                        }
+                    ]
+                },
+                "module": "alerts?$limit=30&$relationships=true",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "160",
+            "left": "120",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "uuid": "9230bad5-46cd-4050-be8c-4345ea29445e"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Fetch The Similar Alerts",
+            "description": null,
+            "arguments": {
+                "for_each": {
+                    "item": "{{vars.steps.Get_Alert_Related_Indicators[0].indicators}}",
+                    "parallel": false,
+                    "condition": ""
+                },
+                "arguments": {
+                    "ListOfIndicators": "{{vars.item.id}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "workflowReference": "\/api\/3\/workflows\/af272ddc-0a87-42d9-a942-bc31fd649f97"
+            },
+            "status": null,
+            "top": "300",
+            "left": "120",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "uuid": "8d755fbf-2494-41e4-9041-b631f865612e"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Similar Alerts",
+            "description": null,
+            "arguments": {
+                "Fetched_Similar_Alerts": "{{vars.result | map(attribute=\"related_alerts\") | list | sum(start = []) | unique}}"
+            },
+            "status": null,
+            "top": "440",
+            "left": "120",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "b7615692-79dc-4ec4-975b-9025f9114e2d"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Fetch The Similar Alerts -> fg",
+            "targetStep": "\/api\/3\/workflow_steps\/b7615692-79dc-4ec4-975b-9025f9114e2d",
+            "sourceStep": "\/api\/3\/workflow_steps\/8d755fbf-2494-41e4-9041-b631f865612e",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "1384bf37-922b-4ee3-8ee1-cd7c6e644bb8"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get ALert -> Fetch The Similar Alerts",
+            "targetStep": "\/api\/3\/workflow_steps\/8d755fbf-2494-41e4-9041-b631f865612e",
+            "sourceStep": "\/api\/3\/workflow_steps\/9230bad5-46cd-4050-be8c-4345ea29445e",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "feee12ac-f0b1-49da-85b1-3e3025a8e916"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Get Alert Related Indicators",
+            "targetStep": "\/api\/3\/workflow_steps\/9230bad5-46cd-4050-be8c-4345ea29445e",
+            "sourceStep": "\/api\/3\/workflow_steps\/f3509088-067e-4fdf-9776-640cab689200",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "ee75bf1d-6585-402d-bd7b-c2b4bfbe834c"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Similar Alerts -> Update Comment",
+            "targetStep": "\/api\/3\/workflow_steps\/cb3d153f-6d79-4301-b224-3e03b7b4fa9b",
+            "sourceStep": "\/api\/3\/workflow_steps\/b7615692-79dc-4ec4-975b-9025f9114e2d",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "97d46067-55f0-4efc-831a-49fb7ef2b31f"
+        }
+    ],
+    "priority": null,
+    "uuid": "1a12691d-9345-42a5-a781-f60b6ea63099",
+    "recordTags": [
+        "Subroutine",
+        "Bot - Execute commands"
+    ],
+    "id": "528",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1644846110.630247,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1644928749.267373,
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null
+}

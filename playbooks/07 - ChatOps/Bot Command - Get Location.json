@@ -1,0 +1,282 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Bot Command - Get Location",
+    "aliasName": null,
+    "tag": null,
+    "description": "Retrieves the geolocation details for the specified indicator.",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "alertID",
+        "content",
+        "commentID",
+        "commentIRI"
+    ],
+    "synchronous": false,
+    "lastModifyDate": 1644924156,
+    "collection": "\/api\/3\/workflow_collections\/73f87b6d-26fe-4c47-80cb-bc671717c5eb",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/2d7eb1d1-f1d7-4a4f-85ac-1bf44f399dd4",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Ip or Domain",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Domain",
+                        "step_iri": "\/api\/3\/workflow_steps\/f09d15f1-56e1-4807-a500-46d565b236f2",
+                        "condition": "{{ vars.steps.Extract_Artifacts.data.Host | length > 0 }}",
+                        "step_name": "Geolocate Domain"
+                    },
+                    {
+                        "option": "IP",
+                        "step_iri": "\/api\/3\/workflow_steps\/4ded7ecb-3c2b-4b6c-9039-779481e2b5cb",
+                        "condition": "{{ vars.steps.Extract_Artifacts.data.IP | length > 0 }}",
+                        "step_name": "Geolocate IP"
+                    },
+                    {
+                        "option": "Not Found",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/16815b8e-455f-430e-9434-4a17009edd75",
+                        "step_name": "Copy  of Update Record"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "190",
+            "left": "775",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "uuid": "0ce85282-9e59-4b3a-9273-27a53cbabbd1"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Record",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "content": "<p>{{vars.input.params.content}}<\/p>\n<p>&nbsp;<\/p>\n<p><span style=\"color: #33cccc;\"><em><span style=\"background-color: #333333;\"><strong>Geo Location Details :<\/strong><\/span><\/em><\/span><\/p>\n<p>&nbsp;<\/p>\n<table style=\"height: 165px; width: 509px;\">\n<tbody>\n<tr>\n<td style=\"width: 91px;\"><span style=\"color: #ffffff;\">IP<\/span><\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0].ip}}<\/td>\n<\/tr>\n<tr>\n<td style=\"width: 91px;\"><span style=\"color: #ffffff;\">Type<\/span><\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0].type}}<\/td>\n<\/tr>\n<tr>\n<td style=\"width: 91px;\"><span style=\"color: #ffffff;\">Region<\/span><\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0]['region_name']}}<\/td>\n<\/tr>\n<tr>\n<td style=\"width: 91px;\"><span style=\"color: #ffffff;\">Capital&nbsp;<\/span><\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0].location.capital}}<\/td>\n<\/tr>\n<tr>\n<td style=\"width: 91px;\"><span style=\"color: #ffffff;\">Country<\/span><\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0]['country_name']}}<\/td>\n<\/tr>\n<tr>\n<td style=\"width: 91px;\"><span style=\"color: #ffffff;\">Flag<\/span><\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0].location['country_flag_emoji']}}<\/td>\n<\/tr>\n<tr>\n<td style=\"width: 91px;\"><span style=\"color: #ffffff;\">Continent<\/span><\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0]['continent_name']}}<\/td>\n<\/tr>\n<\/tbody>\n<\/table>"
+                },
+                "_showJson": false,
+                "operation": "Overwrite",
+                "collection": "{{vars.input.params.commentIRI}}",
+                "__recommend": [],
+                "tagsOperation": "OverwriteTags",
+                "collectionType": "\/api\/3\/comments",
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "110",
+            "left": "1425",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "uuid": "f4bb470b-76ad-4d4b-8aba-acb5c1226bd0"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Extract Artifacts",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "data": "{{vars.content}}",
+                    "whitelist": "",
+                    "case_sensitive": "",
+                    "override_regex": "",
+                    "private_whitelist": ""
+                },
+                "version": "3.1.2",
+                "connector": "cyops_utilities",
+                "operation": "extract_artifacts",
+                "operationTitle": "CyOPs: Extract Artifacts from String",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "190",
+            "left": "450",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "uuid": "b7e3d3a5-9e96-4e84-acd9-1f237ef6e850"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Geolocate Domain",
+            "description": null,
+            "arguments": {
+                "name": "IPStack",
+                "config": "b4129772-4eaa-4cf5-96c0-18454529ffae",
+                "params": {
+                    "query": "{{vars.steps.Extract_Artifacts.data.Host[0]}}",
+                    "fields": "",
+                    "enable_hostname": true,
+                    "enable_security": false
+                },
+                "version": "1.0.0",
+                "connector": "ipstack",
+                "operation": "domain_locate",
+                "operationTitle": "Geolocate Domain",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "20",
+            "left": "1100",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "uuid": "f09d15f1-56e1-4807-a500-46d565b236f2"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Geolocate IP",
+            "description": null,
+            "arguments": {
+                "name": "IPStack",
+                "config": "b4129772-4eaa-4cf5-96c0-18454529ffae",
+                "params": {
+                    "query": "{{vars.steps.Extract_Artifacts.data.IP[0]}}",
+                    "fields": "",
+                    "enable_hostname": true,
+                    "enable_security": false
+                },
+                "version": "1.0.0",
+                "connector": "ipstack",
+                "operation": "ip_locate",
+                "operationTitle": "Geolocate IP",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "190",
+            "left": "1100",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "uuid": "4ded7ecb-3c2b-4b6c-9039-779481e2b5cb"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": {
+                            "alertID": "{{ vars.alertID }}",
+                            "content": "{{ vars.content }}",
+                            "commentID": "{{ vars.commentID }}",
+                            "commentIRI": "{{ vars.commentIRI }}"
+                        }
+                    }
+                }
+            },
+            "status": null,
+            "top": "190",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "uuid": "2d7eb1d1-f1d7-4a4f-85ac-1bf44f399dd4"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Display Message For Not Found",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "content": "<p>{{vars.input.params.content}}<\/p>\n<p>&nbsp;<\/p>\n<p><span style=\"color: #33cccc;\"><em><span style=\"background-color: #333333;\"><strong>Geo Location Details Not Found<br><\/strong><\/span><\/em><\/span><\/p>"
+                },
+                "_showJson": false,
+                "operation": "Overwrite",
+                "collection": "{{vars.input.params.commentIRI}}",
+                "__recommend": [],
+                "tagsOperation": "OverwriteTags",
+                "collectionType": "\/api\/3\/comments",
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "350",
+            "left": "1100",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "uuid": "16815b8e-455f-430e-9434-4a17009edd75"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Ip or Domain -> Geolocate Domain",
+            "targetStep": "\/api\/3\/workflow_steps\/f09d15f1-56e1-4807-a500-46d565b236f2",
+            "sourceStep": "\/api\/3\/workflow_steps\/0ce85282-9e59-4b3a-9273-27a53cbabbd1",
+            "label": "Domain",
+            "isExecuted": false,
+            "uuid": "dfb29c2a-bb69-4070-aa40-0b9341488d73"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Ip or Domain -> Geolocate IP",
+            "targetStep": "\/api\/3\/workflow_steps\/4ded7ecb-3c2b-4b6c-9039-779481e2b5cb",
+            "sourceStep": "\/api\/3\/workflow_steps\/0ce85282-9e59-4b3a-9273-27a53cbabbd1",
+            "label": "IP",
+            "isExecuted": false,
+            "uuid": "aa49ac8c-dbd4-4502-a404-17d7887a9153"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Extract Artifacts",
+            "targetStep": "\/api\/3\/workflow_steps\/b7e3d3a5-9e96-4e84-acd9-1f237ef6e850",
+            "sourceStep": "\/api\/3\/workflow_steps\/2d7eb1d1-f1d7-4a4f-85ac-1bf44f399dd4",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "bb5097f3-9c89-4aca-8b6e-304c66a3ecda"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Geolocate Domain -> Update Record",
+            "targetStep": "\/api\/3\/workflow_steps\/f4bb470b-76ad-4d4b-8aba-acb5c1226bd0",
+            "sourceStep": "\/api\/3\/workflow_steps\/f09d15f1-56e1-4807-a500-46d565b236f2",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "699f44ce-a6a0-40cc-b367-7d2d7315a108"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Geolocate IP -> Update Record",
+            "targetStep": "\/api\/3\/workflow_steps\/f4bb470b-76ad-4d4b-8aba-acb5c1226bd0",
+            "sourceStep": "\/api\/3\/workflow_steps\/4ded7ecb-3c2b-4b6c-9039-779481e2b5cb",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "bdf0e232-a10d-4012-a49f-77f1a97324f3"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Extract Artifacts -> Ip or Domain",
+            "targetStep": "\/api\/3\/workflow_steps\/0ce85282-9e59-4b3a-9273-27a53cbabbd1",
+            "sourceStep": "\/api\/3\/workflow_steps\/b7e3d3a5-9e96-4e84-acd9-1f237ef6e850",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "3e66d6c6-59aa-40ba-9109-3abd460dd096"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Ip or Domain -> Copy  of Update Record",
+            "targetStep": "\/api\/3\/workflow_steps\/16815b8e-455f-430e-9434-4a17009edd75",
+            "sourceStep": "\/api\/3\/workflow_steps\/0ce85282-9e59-4b3a-9273-27a53cbabbd1",
+            "label": "Not Found",
+            "isExecuted": false,
+            "uuid": "d8434c95-8549-4a61-8536-db74fa83abd8"
+        }
+    ],
+    "priority": null,
+    "uuid": "4bc1079d-2ec9-4375-9176-eec17c3b6e0a",
+    "recordTags": [
+        "Subroutine",
+        "Bot - Execute commands"
+    ],
+    "id": "526",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1644846110.629621,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1644924156.539745,
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null
+}
