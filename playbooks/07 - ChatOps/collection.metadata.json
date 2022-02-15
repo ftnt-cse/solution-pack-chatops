@@ -1,0 +1,16 @@
+{
+    "@context": "\/api\/3\/contexts\/WorkflowCollection",
+    "@type": "WorkflowCollection",
+    "name": "07 - ChatOps",
+    "description": null,
+    "visible": true,
+    "image": null,
+    "uuid": "73f87b6d-26fe-4c47-80cb-bc671717c5eb",
+    "id": 56,
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1644846110.627709,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1644846110.627709,
+    "recordTags": [],
+    "deletedAt": null
+}
