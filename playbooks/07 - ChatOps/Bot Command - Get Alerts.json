@@ -16,10 +16,10 @@
         "commentIRI"
     ],
     "synchronous": false,
-    "lastModifyDate": 1644921782,
+    "lastModifyDate": 1645784396,
     "collection": "\/api\/3\/workflow_collections\/73f87b6d-26fe-4c47-80cb-bc671717c5eb",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/ede5b275-a18e-4145-9196-a4cc83ed26db",
+    "triggerStep": "\/api\/3\/workflow_steps\/90ce2ed4-3b85-4e67-a46d-de75bf018fbc",
     "steps": [
         {
             "@type": "WorkflowStep",
@@ -43,7 +43,7 @@
             "top": "110",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-            "uuid": "ede5b275-a18e-4145-9196-a4cc83ed26db"
+            "uuid": "90ce2ed4-3b85-4e67-a46d-de75bf018fbc"
         },
         {
             "@type": "WorkflowStep",
@@ -68,7 +68,7 @@
             "top": "190",
             "left": "1100",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "0861295e-fb11-4a1c-bc4d-a89db91da90f"
+            "uuid": "f1962065-8db7-4fbe-8e37-23822d88cf6d"
         },
         {
             "@type": "WorkflowStep",
@@ -78,13 +78,13 @@
                 "conditions": [
                     {
                         "option": "No",
-                        "step_iri": "\/api\/3\/workflow_steps\/f279f385-901b-4d40-9017-e19be2b4ace6",
+                        "step_iri": "\/api\/3\/workflow_steps\/e0c52c49-9671-4dae-87b2-aa5516b7c643",
                         "condition": "{{ vars.steps.Get_Alerts_Details | length <= 0 }}"
                     },
                     {
                         "option": "Yes",
                         "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/0861295e-fb11-4a1c-bc4d-a89db91da90f"
+                        "step_iri": "\/api\/3\/workflow_steps\/f1962065-8db7-4fbe-8e37-23822d88cf6d"
                     }
                 ]
             },
@@ -92,7 +92,7 @@
             "top": "110",
             "left": "775",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "uuid": "53fbeffe-434c-4601-895a-d4e175b84544"
+            "uuid": "7d348c26-3c08-4780-84d8-0fc003bab7b1"
         },
         {
             "@type": "WorkflowStep",
@@ -117,7 +117,7 @@
             "top": "30",
             "left": "1100",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "f279f385-901b-4d40-9017-e19be2b4ace6"
+            "uuid": "e0c52c49-9671-4dae-87b2-aa5516b7c643"
         },
         {
             "@type": "WorkflowStep",
@@ -145,58 +145,60 @@
             "top": "110",
             "left": "450",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
-            "uuid": "5998487c-f501-4b95-b040-cce3f671ff10"
+            "uuid": "7ef110d0-60a1-4351-bb8f-58e5a03c7924"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Get Alerts Details",
-            "targetStep": "\/api\/3\/workflow_steps\/5998487c-f501-4b95-b040-cce3f671ff10",
-            "sourceStep": "\/api\/3\/workflow_steps\/ede5b275-a18e-4145-9196-a4cc83ed26db",
+            "targetStep": "\/api\/3\/workflow_steps\/7ef110d0-60a1-4351-bb8f-58e5a03c7924",
+            "sourceStep": "\/api\/3\/workflow_steps\/90ce2ed4-3b85-4e67-a46d-de75bf018fbc",
             "label": null,
             "isExecuted": false,
-            "uuid": "34c383e9-a26e-44fd-8c98-fa85333fc0e8"
+            "uuid": "813dd605-3ce8-4f1f-86fb-e7ec7acce35b"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Check if Alert Found -> Copy  of Display the Alerts Details",
-            "targetStep": "\/api\/3\/workflow_steps\/f279f385-901b-4d40-9017-e19be2b4ace6",
-            "sourceStep": "\/api\/3\/workflow_steps\/53fbeffe-434c-4601-895a-d4e175b84544",
+            "targetStep": "\/api\/3\/workflow_steps\/e0c52c49-9671-4dae-87b2-aa5516b7c643",
+            "sourceStep": "\/api\/3\/workflow_steps\/7d348c26-3c08-4780-84d8-0fc003bab7b1",
             "label": "No",
             "isExecuted": false,
-            "uuid": "bdcc3bc1-b0bb-4556-86ad-f74a5868f535"
+            "uuid": "70f14b6c-8be1-477f-84db-996279de7291"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Check if Alert Found -> Display the Alerts Details 2",
-            "targetStep": "\/api\/3\/workflow_steps\/0861295e-fb11-4a1c-bc4d-a89db91da90f",
-            "sourceStep": "\/api\/3\/workflow_steps\/53fbeffe-434c-4601-895a-d4e175b84544",
+            "targetStep": "\/api\/3\/workflow_steps\/f1962065-8db7-4fbe-8e37-23822d88cf6d",
+            "sourceStep": "\/api\/3\/workflow_steps\/7d348c26-3c08-4780-84d8-0fc003bab7b1",
             "label": "Yes",
             "isExecuted": false,
-            "uuid": "430c1e88-6ab3-4682-b02e-07ce419aed85"
+            "uuid": "306c52f6-4eef-4927-b9ba-b344cd786b2e"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Get Alerts Details -> Check if Alert Found",
-            "targetStep": "\/api\/3\/workflow_steps\/53fbeffe-434c-4601-895a-d4e175b84544",
-            "sourceStep": "\/api\/3\/workflow_steps\/5998487c-f501-4b95-b040-cce3f671ff10",
+            "targetStep": "\/api\/3\/workflow_steps\/7d348c26-3c08-4780-84d8-0fc003bab7b1",
+            "sourceStep": "\/api\/3\/workflow_steps\/7ef110d0-60a1-4351-bb8f-58e5a03c7924",
             "label": null,
             "isExecuted": false,
-            "uuid": "2215bccc-2ed6-46b7-a47e-3e1f9f86785a"
+            "uuid": "ef2d9327-3670-4572-a94c-5d46bb73673a"
         }
     ],
     "priority": null,
     "uuid": "1016f64b-f3f8-4f72-a9c0-cf4d1b961a31",
     "recordTags": [
         "Subroutine",
+        "FSRSolutionPack",
+        "chatOps-1.0.0",
         "Bot - Execute commands"
     ],
-    "id": "524",
+    "id": "738",
     "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1644846110.629079,
+    "createDate": 1645784396.660937,
     "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1644921781.829853,
+    "modifyDate": 1645784396.660937,
     "owners": [],
     "isPrivate": false,
     "deletedAt": null

@@ -4,21 +4,24 @@
     "type": "solutionpack",
     "local": true,
     "label": "ChatOps",
-    "category": [],
     "dependencies": [
         {
-            "name": "fortiSOAREssentials",
+            "name": "socSimulator",
             "type": "solutionpack",
-            "label": "FortiSOAR Essentials"
+            "label": "SOC Simulator",
+            "version": "1.0.0",
+            "minVersion": null
         }
     ],
     "prerequisite": [],
     "publisher": "Fortinet",
-    "certified": "true",
-    "description": "This solution pack implements a set of Chatbot commands that provisions to get information of alert, incident or indicator records.",
+    "description": "This solution pack implements a set of Chat-bot commands that provisions to get information of alert, incident or indicator records.",
+    "summary": null,
+    "help": "https:\/\/github.com\/fortinet-fortisoar\/solution-pack-chatops\/blob\/develop\/README.md",
+    "category": [],
     "supportInfo": "support@fortinet.com",
-    "help": "https://github.com/fortinet-fortisoar/solution-pack-chatops",
-    "tags": [],
+    "iconLarge": null,
+    "recordTags": [],
     "fsrMinCompatibility": "7.2.0",
     "date": "2022-02-15T12:40:22+00:00",
     "exported_from": "tenant.fortisoar.com",
@@ -27,6 +30,14 @@
         "playbooks": [
             {
                 "name": "07 - ChatOps"
+            }
+        ],
+        "globalVariables": [
+            {
+                "id": 7,
+                "name": "Server_fqhn",
+                "value": "tenant.fortinet.com",
+                "default_value": null
             }
         ]
     }

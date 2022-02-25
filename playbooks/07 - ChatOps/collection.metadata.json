@@ -6,11 +6,14 @@
     "visible": true,
     "image": null,
     "uuid": "73f87b6d-26fe-4c47-80cb-bc671717c5eb",
-    "id": 56,
+    "id": 81,
     "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1644846110.627709,
+    "createDate": 1645784396.658984,
     "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1644846110.627709,
-    "recordTags": [],
+    "modifyDate": 1645784396.658984,
+    "recordTags": [
+        "FSRSolutionPack",
+        "chatOps-1.0.0"
+    ],
     "deletedAt": null
 }
