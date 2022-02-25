@@ -16,10 +16,10 @@
         "content"
     ],
     "synchronous": false,
-    "lastModifyDate": 1644863886,
+    "lastModifyDate": 1645784396,
     "collection": "\/api\/3\/workflow_collections\/73f87b6d-26fe-4c47-80cb-bc671717c5eb",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/8f9a2148-2cc2-471a-bdcb-ab624b581f01",
+    "triggerStep": "\/api\/3\/workflow_steps\/d663d3e5-56d0-42bc-b6c6-10b3ab36e537",
     "steps": [
         {
             "@type": "WorkflowStep",
@@ -41,7 +41,7 @@
             "top": "30",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-            "uuid": "8f9a2148-2cc2-471a-bdcb-ab624b581f01"
+            "uuid": "d663d3e5-56d0-42bc-b6c6-10b3ab36e537"
         },
         {
             "@type": "WorkflowStep",
@@ -66,31 +66,33 @@
             "top": "165",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "efe5e723-d33a-4b90-a076-bf760302c422"
+            "uuid": "5316bcfc-ac11-45af-af11-a7fb733cafbf"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Display BOT Options",
-            "targetStep": "\/api\/3\/workflow_steps\/efe5e723-d33a-4b90-a076-bf760302c422",
-            "sourceStep": "\/api\/3\/workflow_steps\/8f9a2148-2cc2-471a-bdcb-ab624b581f01",
+            "targetStep": "\/api\/3\/workflow_steps\/5316bcfc-ac11-45af-af11-a7fb733cafbf",
+            "sourceStep": "\/api\/3\/workflow_steps\/d663d3e5-56d0-42bc-b6c6-10b3ab36e537",
             "label": null,
             "isExecuted": false,
-            "uuid": "f13a0f63-1206-4df4-8dd6-6d4d5d6c3b26"
+            "uuid": "ee2be9a8-c554-4168-98d6-a6ab45e7c494"
         }
     ],
     "priority": null,
     "uuid": "69ea8cef-cf45-414a-ad78-12f26b097a0d",
     "recordTags": [
         "Subroutine",
+        "FSRSolutionPack",
+        "chatOps-1.0.0",
         "Bot - Execute commands"
     ],
-    "id": "529",
+    "id": "743",
     "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1644846110.630507,
+    "createDate": 1645784396.662645,
     "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1644863887.696947,
+    "modifyDate": 1645784396.662645,
     "owners": [],
     "isPrivate": false,
     "deletedAt": null

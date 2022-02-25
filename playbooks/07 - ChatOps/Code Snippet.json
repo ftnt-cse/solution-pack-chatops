@@ -11,10 +11,10 @@
     "remoteExecutableFlag": false,
     "parameters": [],
     "synchronous": false,
-    "lastModifyDate": 1644928765,
+    "lastModifyDate": 1645784396,
     "collection": "\/api\/3\/workflow_collections\/73f87b6d-26fe-4c47-80cb-bc671717c5eb",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/a26b38f3-7a94-4a04-93be-ae0cc78c7f5c",
+    "triggerStep": "\/api\/3\/workflow_steps\/0a6b9921-d2c9-4c4b-910f-f30dc4c9231c",
     "steps": [
         {
             "@type": "WorkflowStep",
@@ -35,7 +35,7 @@
             "top": "300",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/1fdd14cc-d6b4-4335-a3af-ab49c8ed2fd8",
-            "uuid": "d4177fe0-efaf-4a9d-93ff-3efc83dc2679"
+            "uuid": "f88c22d8-7d62-4d26-ba0b-b6761c09f1ec"
         },
         {
             "@type": "WorkflowStep",
@@ -71,7 +71,7 @@
             "top": "30",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/ea155646-3821-4542-9702-b246da430a8d",
-            "uuid": "a26b38f3-7a94-4a04-93be-ae0cc78c7f5c"
+            "uuid": "0a6b9921-d2c9-4c4b-910f-f30dc4c9231c"
         },
         {
             "@type": "WorkflowStep",
@@ -86,7 +86,7 @@
             "top": "165",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "b0d4468f-b6c5-4ee1-b87d-f86e03a9375a"
+            "uuid": "c7035b38-d889-48bc-b1b2-c82c19742158"
         },
         {
             "@type": "WorkflowStep",
@@ -127,48 +127,50 @@
             "top": "435",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
-            "uuid": "bb0e6941-6f1c-4011-9ea1-da8b900b9fcb"
+            "uuid": "5bfb42a8-7e13-48d0-8547-fba7aa03fd35"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "update alerts -> ALerts Details",
-            "targetStep": "\/api\/3\/workflow_steps\/bb0e6941-6f1c-4011-9ea1-da8b900b9fcb",
-            "sourceStep": "\/api\/3\/workflow_steps\/d4177fe0-efaf-4a9d-93ff-3efc83dc2679",
+            "targetStep": "\/api\/3\/workflow_steps\/5bfb42a8-7e13-48d0-8547-fba7aa03fd35",
+            "sourceStep": "\/api\/3\/workflow_steps\/f88c22d8-7d62-4d26-ba0b-b6761c09f1ec",
             "label": null,
             "isExecuted": false,
-            "uuid": "4b297fa0-4a96-4ee2-a135-1adbab8186d6"
+            "uuid": "02e0f3d1-d4b6-4017-b112-f637a1920d36"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Config -> update alerts",
-            "targetStep": "\/api\/3\/workflow_steps\/d4177fe0-efaf-4a9d-93ff-3efc83dc2679",
-            "sourceStep": "\/api\/3\/workflow_steps\/b0d4468f-b6c5-4ee1-b87d-f86e03a9375a",
+            "targetStep": "\/api\/3\/workflow_steps\/f88c22d8-7d62-4d26-ba0b-b6761c09f1ec",
+            "sourceStep": "\/api\/3\/workflow_steps\/c7035b38-d889-48bc-b1b2-c82c19742158",
             "label": null,
             "isExecuted": false,
-            "uuid": "7c134f21-cc94-4b2f-8ed2-71e189382e45"
+            "uuid": "e33418d7-15d4-43f9-982e-5f15870eb56d"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Config",
-            "targetStep": "\/api\/3\/workflow_steps\/b0d4468f-b6c5-4ee1-b87d-f86e03a9375a",
-            "sourceStep": "\/api\/3\/workflow_steps\/a26b38f3-7a94-4a04-93be-ae0cc78c7f5c",
+            "targetStep": "\/api\/3\/workflow_steps\/c7035b38-d889-48bc-b1b2-c82c19742158",
+            "sourceStep": "\/api\/3\/workflow_steps\/0a6b9921-d2c9-4c4b-910f-f30dc4c9231c",
             "label": null,
             "isExecuted": false,
-            "uuid": "2806a27a-745b-4d5b-b14a-ab77c01e5dc9"
+            "uuid": "b102f050-42ac-421b-bc43-9d58d017da2f"
         }
     ],
     "priority": null,
     "uuid": "61de3adb-6934-4a77-b175-95d8fe69f869",
     "recordTags": [
-        "PostCreate"
+        "PostCreate",
+        "FSRSolutionPack",
+        "chatOps-1.0.0"
     ],
-    "id": "530",
+    "id": "744",
     "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1644846110.630575,
+    "createDate": 1645784396.662885,
     "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1644928765.483383,
+    "modifyDate": 1645784396.662885,
     "owners": [],
     "isPrivate": false,
     "deletedAt": null

@@ -16,10 +16,10 @@
         "commentIRI"
     ],
     "synchronous": false,
-    "lastModifyDate": 1644924156,
+    "lastModifyDate": 1645793103,
     "collection": "\/api\/3\/workflow_collections\/73f87b6d-26fe-4c47-80cb-bc671717c5eb",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/2d7eb1d1-f1d7-4a4f-85ac-1bf44f399dd4",
+    "triggerStep": "\/api\/3\/workflow_steps\/05e3349b-a22d-466f-a90a-ca1a9424a1c2",
     "steps": [
         {
             "@type": "WorkflowStep",
@@ -29,20 +29,20 @@
                 "conditions": [
                     {
                         "option": "Domain",
-                        "step_iri": "\/api\/3\/workflow_steps\/f09d15f1-56e1-4807-a500-46d565b236f2",
+                        "step_iri": "\/api\/3\/workflow_steps\/a1a5db7b-888e-4778-a216-c5ec43ae8264",
                         "condition": "{{ vars.steps.Extract_Artifacts.data.Host | length > 0 }}",
                         "step_name": "Geolocate Domain"
                     },
                     {
                         "option": "IP",
-                        "step_iri": "\/api\/3\/workflow_steps\/4ded7ecb-3c2b-4b6c-9039-779481e2b5cb",
+                        "step_iri": "\/api\/3\/workflow_steps\/4cf063cd-561b-4fd5-bea9-3e777e27c8b3",
                         "condition": "{{ vars.steps.Extract_Artifacts.data.IP | length > 0 }}",
                         "step_name": "Geolocate IP"
                     },
                     {
                         "option": "Not Found",
                         "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/16815b8e-455f-430e-9434-4a17009edd75",
+                        "step_iri": "\/api\/3\/workflow_steps\/f4ffbc26-7c21-4633-a1f3-af157d410a4c",
                         "step_name": "Copy  of Update Record"
                     }
                 ]
@@ -51,7 +51,7 @@
             "top": "190",
             "left": "775",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "uuid": "0ce85282-9e59-4b3a-9273-27a53cbabbd1"
+            "uuid": "921f806c-338d-4110-969e-3ba2a7d3ea6b"
         },
         {
             "@type": "WorkflowStep",
@@ -59,7 +59,7 @@
             "description": null,
             "arguments": {
                 "resource": {
-                    "content": "<p>{{vars.input.params.content}}<\/p>\n<p>&nbsp;<\/p>\n<p><span style=\"color: #33cccc;\"><em><span style=\"background-color: #333333;\"><strong>Geo Location Details :<\/strong><\/span><\/em><\/span><\/p>\n<p>&nbsp;<\/p>\n<table style=\"height: 165px; width: 509px;\">\n<tbody>\n<tr>\n<td style=\"width: 91px;\"><span style=\"color: #ffffff;\">IP<\/span><\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0].ip}}<\/td>\n<\/tr>\n<tr>\n<td style=\"width: 91px;\"><span style=\"color: #ffffff;\">Type<\/span><\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0].type}}<\/td>\n<\/tr>\n<tr>\n<td style=\"width: 91px;\"><span style=\"color: #ffffff;\">Region<\/span><\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0]['region_name']}}<\/td>\n<\/tr>\n<tr>\n<td style=\"width: 91px;\"><span style=\"color: #ffffff;\">Capital&nbsp;<\/span><\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0].location.capital}}<\/td>\n<\/tr>\n<tr>\n<td style=\"width: 91px;\"><span style=\"color: #ffffff;\">Country<\/span><\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0]['country_name']}}<\/td>\n<\/tr>\n<tr>\n<td style=\"width: 91px;\"><span style=\"color: #ffffff;\">Flag<\/span><\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0].location['country_flag_emoji']}}<\/td>\n<\/tr>\n<tr>\n<td style=\"width: 91px;\"><span style=\"color: #ffffff;\">Continent<\/span><\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0]['continent_name']}}<\/td>\n<\/tr>\n<\/tbody>\n<\/table>"
+                    "content": "<p>{{vars.input.params.content}}<\/p>\n<p>&nbsp;<\/p>\n<p><span style=\"color: #33cccc;\"><em><span style=\"background-color: #333333;\"><strong>Geo Location Details:<\/strong><\/span><\/em><\/span><\/p>\n<p>&nbsp;<\/p>\n<table border=\"2\">\n<tbody>\n<tr>\n<td width=\"30%\"><span style=\"color: #ffffff;\">IP<\/span><\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0].ip}}<\/td>\n<\/tr>\n<tr>\n<td width=\"30%\"><span style=\"color: #ffffff;\">Type<\/span><\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0].type}}<\/td>\n<\/tr>\n<tr>\n<td width=\"30%\"><span style=\"color: #ffffff;\">Region<\/span><\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0]['region_name']}}<\/td>\n<\/tr>\n<tr>\n<td width=\"30%\"><span style=\"color: #ffffff;\">Capital&nbsp;<\/span><\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0].location.capital}}<\/td>\n<\/tr>\n<tr>\n<td width=\"30%\"><span style=\"color: #ffffff;\">Country<\/span><\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0]['country_name']}}<\/td>\n<\/tr>\n<tr>\n<td width=\"30%\"><span style=\"color: #ffffff;\">Flag<\/span><\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0].location['country_flag_emoji']}}<\/td>\n<\/tr>\n<tr>\n<td width=\"30%\"><span style=\"color: #ffffff;\">Continent<\/span><\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0]['continent_name']}}<\/td>\n<\/tr>\n<\/tbody>\n<\/table>"
                 },
                 "_showJson": false,
                 "operation": "Overwrite",
@@ -73,10 +73,10 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "110",
-            "left": "1425",
+            "top": "100",
+            "left": "1420",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "f4bb470b-76ad-4d4b-8aba-acb5c1226bd0"
+            "uuid": "797052db-8917-430c-855b-a985b5142533"
         },
         {
             "@type": "WorkflowStep",
@@ -100,7 +100,7 @@
             "top": "190",
             "left": "450",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "uuid": "b7e3d3a5-9e96-4e84-acd9-1f237ef6e850"
+            "uuid": "a14ca981-aeb3-4c07-93c9-be31463c7949"
         },
         {
             "@type": "WorkflowStep",
@@ -125,7 +125,7 @@
             "top": "20",
             "left": "1100",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
-            "uuid": "f09d15f1-56e1-4807-a500-46d565b236f2"
+            "uuid": "a1a5db7b-888e-4778-a216-c5ec43ae8264"
         },
         {
             "@type": "WorkflowStep",
@@ -150,7 +150,7 @@
             "top": "190",
             "left": "1100",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
-            "uuid": "4ded7ecb-3c2b-4b6c-9039-779481e2b5cb"
+            "uuid": "4cf063cd-561b-4fd5-bea9-3e777e27c8b3"
         },
         {
             "@type": "WorkflowStep",
@@ -172,7 +172,7 @@
             "top": "190",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-            "uuid": "2d7eb1d1-f1d7-4a4f-85ac-1bf44f399dd4"
+            "uuid": "05e3349b-a22d-466f-a90a-ca1a9424a1c2"
         },
         {
             "@type": "WorkflowStep",
@@ -197,85 +197,87 @@
             "top": "350",
             "left": "1100",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "16815b8e-455f-430e-9434-4a17009edd75"
+            "uuid": "f4ffbc26-7c21-4633-a1f3-af157d410a4c"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Ip or Domain -> Geolocate Domain",
-            "targetStep": "\/api\/3\/workflow_steps\/f09d15f1-56e1-4807-a500-46d565b236f2",
-            "sourceStep": "\/api\/3\/workflow_steps\/0ce85282-9e59-4b3a-9273-27a53cbabbd1",
+            "targetStep": "\/api\/3\/workflow_steps\/a1a5db7b-888e-4778-a216-c5ec43ae8264",
+            "sourceStep": "\/api\/3\/workflow_steps\/921f806c-338d-4110-969e-3ba2a7d3ea6b",
             "label": "Domain",
             "isExecuted": false,
-            "uuid": "dfb29c2a-bb69-4070-aa40-0b9341488d73"
+            "uuid": "0eec9ad5-5dbb-4d04-a154-f919e1374445"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Ip or Domain -> Geolocate IP",
-            "targetStep": "\/api\/3\/workflow_steps\/4ded7ecb-3c2b-4b6c-9039-779481e2b5cb",
-            "sourceStep": "\/api\/3\/workflow_steps\/0ce85282-9e59-4b3a-9273-27a53cbabbd1",
+            "targetStep": "\/api\/3\/workflow_steps\/4cf063cd-561b-4fd5-bea9-3e777e27c8b3",
+            "sourceStep": "\/api\/3\/workflow_steps\/921f806c-338d-4110-969e-3ba2a7d3ea6b",
             "label": "IP",
             "isExecuted": false,
-            "uuid": "aa49ac8c-dbd4-4502-a404-17d7887a9153"
+            "uuid": "490dcc15-632f-4cd2-8e43-fb8d87d5c4c4"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Extract Artifacts",
-            "targetStep": "\/api\/3\/workflow_steps\/b7e3d3a5-9e96-4e84-acd9-1f237ef6e850",
-            "sourceStep": "\/api\/3\/workflow_steps\/2d7eb1d1-f1d7-4a4f-85ac-1bf44f399dd4",
+            "targetStep": "\/api\/3\/workflow_steps\/a14ca981-aeb3-4c07-93c9-be31463c7949",
+            "sourceStep": "\/api\/3\/workflow_steps\/05e3349b-a22d-466f-a90a-ca1a9424a1c2",
             "label": null,
             "isExecuted": false,
-            "uuid": "bb5097f3-9c89-4aca-8b6e-304c66a3ecda"
+            "uuid": "1749808e-0fb6-454e-a07c-fad8ae1249bd"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Geolocate Domain -> Update Record",
-            "targetStep": "\/api\/3\/workflow_steps\/f4bb470b-76ad-4d4b-8aba-acb5c1226bd0",
-            "sourceStep": "\/api\/3\/workflow_steps\/f09d15f1-56e1-4807-a500-46d565b236f2",
+            "targetStep": "\/api\/3\/workflow_steps\/797052db-8917-430c-855b-a985b5142533",
+            "sourceStep": "\/api\/3\/workflow_steps\/a1a5db7b-888e-4778-a216-c5ec43ae8264",
             "label": null,
             "isExecuted": false,
-            "uuid": "699f44ce-a6a0-40cc-b367-7d2d7315a108"
+            "uuid": "73258ce6-c2ab-4279-8395-e46d70dfe243"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Geolocate IP -> Update Record",
-            "targetStep": "\/api\/3\/workflow_steps\/f4bb470b-76ad-4d4b-8aba-acb5c1226bd0",
-            "sourceStep": "\/api\/3\/workflow_steps\/4ded7ecb-3c2b-4b6c-9039-779481e2b5cb",
+            "targetStep": "\/api\/3\/workflow_steps\/797052db-8917-430c-855b-a985b5142533",
+            "sourceStep": "\/api\/3\/workflow_steps\/4cf063cd-561b-4fd5-bea9-3e777e27c8b3",
             "label": null,
             "isExecuted": false,
-            "uuid": "bdf0e232-a10d-4012-a49f-77f1a97324f3"
+            "uuid": "c641c1eb-d211-4f2d-a57e-cdf9af38f578"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Extract Artifacts -> Ip or Domain",
-            "targetStep": "\/api\/3\/workflow_steps\/0ce85282-9e59-4b3a-9273-27a53cbabbd1",
-            "sourceStep": "\/api\/3\/workflow_steps\/b7e3d3a5-9e96-4e84-acd9-1f237ef6e850",
+            "targetStep": "\/api\/3\/workflow_steps\/921f806c-338d-4110-969e-3ba2a7d3ea6b",
+            "sourceStep": "\/api\/3\/workflow_steps\/a14ca981-aeb3-4c07-93c9-be31463c7949",
             "label": null,
             "isExecuted": false,
-            "uuid": "3e66d6c6-59aa-40ba-9109-3abd460dd096"
+            "uuid": "28f6a3e7-b37d-47ac-8b9f-79bf0dd5637d"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Ip or Domain -> Copy  of Update Record",
-            "targetStep": "\/api\/3\/workflow_steps\/16815b8e-455f-430e-9434-4a17009edd75",
-            "sourceStep": "\/api\/3\/workflow_steps\/0ce85282-9e59-4b3a-9273-27a53cbabbd1",
+            "targetStep": "\/api\/3\/workflow_steps\/f4ffbc26-7c21-4633-a1f3-af157d410a4c",
+            "sourceStep": "\/api\/3\/workflow_steps\/921f806c-338d-4110-969e-3ba2a7d3ea6b",
             "label": "Not Found",
             "isExecuted": false,
-            "uuid": "d8434c95-8549-4a61-8536-db74fa83abd8"
+            "uuid": "f6e04e60-ff47-44f6-b736-5d81caa7355e"
         }
     ],
     "priority": null,
     "uuid": "4bc1079d-2ec9-4375-9176-eec17c3b6e0a",
     "recordTags": [
         "Subroutine",
+        "FSRSolutionPack",
+        "chatOps-1.0.0",
         "Bot - Execute commands"
     ],
-    "id": "526",
+    "id": "740",
     "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1644846110.629621,
+    "createDate": 1645784396.661662,
     "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1644924156.539745,
+    "modifyDate": 1645793104.204849,
     "owners": [],
     "isPrivate": false,
     "deletedAt": null
