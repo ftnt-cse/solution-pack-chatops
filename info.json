@@ -6,9 +6,9 @@
     "label": "ChatOps",
     "dependencies": [
         {
-            "name": "socSimulator",
+            "name": "sOARFramework",
             "type": "solutionpack",
-            "label": "SOC Simulator",
+            "label": "SOAR Framework",
             "version": "1.0.0",
             "minVersion": null
         }
