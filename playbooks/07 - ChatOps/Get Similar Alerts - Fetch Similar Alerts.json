@@ -101,9 +101,7 @@
     "priority": null,
     "uuid": "af272ddc-0a87-42d9-a942-bc31fd649f97",
     "recordTags": [
-        "Subroutine",
-        "FSRSolutionPack",
-        "chatOps-1.0.0"
+        "Subroutine"
     ],
     "id": "745",
     "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",

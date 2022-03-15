@@ -462,9 +462,7 @@
     "priority": null,
     "uuid": "9337b2da-8612-4aa7-b1ef-51c548c0cf46",
     "recordTags": [
-        "PostCreate",
-        "FSRSolutionPack",
-        "chatOps-1.0.0"
+        "PostCreate"
     ],
     "id": "737",
     "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
