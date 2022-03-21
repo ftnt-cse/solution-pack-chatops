@@ -1,7 +1,7 @@
 {
     "@context": "\/api\/3\/contexts\/WorkflowCollection",
     "@type": "WorkflowCollection",
-    "name": "07 - ChatOps",
+    "name": "09 - ChatOps",
     "description": null,
     "visible": true,
     "image": null,
@@ -11,9 +11,6 @@
     "createDate": 1645784396.658984,
     "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
     "modifyDate": 1645784396.658984,
-    "recordTags": [
-        "FSRSolutionPack",
-        "chatOps-1.0.0"
-    ],
+    "recordTags": [],
     "deletedAt": null
 }
