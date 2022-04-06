@@ -11,7 +11,6 @@
     "remoteExecutableFlag": false,
     "parameters": [],
     "synchronous": false,
-    "lastModifyDate": 1645784396,
     "collection": "\/api\/3\/workflow_collections\/73f87b6d-26fe-4c47-80cb-bc671717c5eb",
     "versions": [],
     "triggerStep": "\/api\/3\/workflow_steps\/37f32b6c-ae60-4ba7-8e64-0b4b2944692f",
@@ -33,7 +32,7 @@
                 "workflowReference": "\/api\/3\/workflows\/1016f64b-f3f8-4f72-a9c0-cf4d1b961a31"
             },
             "status": null,
-            "top": "190",
+            "top": "180",
             "left": "1100",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "uuid": "b5b026b6-7de4-424e-8514-75985c25c1fe"
@@ -286,7 +285,7 @@
             "arguments": {
                 "when": "{{vars.result['Error message'] | ternary(true,false)}}",
                 "resource": {
-                    "content": "<p>{{vars.input.records[0].content}}<\/p>\n<p>&nbsp;<\/p>\n<p><span style=\"color: #e03e2d; background-color: #333333;\"><em><strong>Error:<\/strong><\/em><\/span><\/p>\n<p><span style=\"color: #33cccc; background-color: #333333;\"><em><strong>Command execution is failed.&nbsp;<\/strong><\/em><\/span><\/p>\n<p><span style=\"color: #33cccc; background-color: #333333;\"><em><strong>Please refer to the \"$Bot --help\" to ensure proper command syntax is given.<\/strong><\/em><\/span><\/p>\n<p><span style=\"color: #33cccc; background-color: #333333;\"><em><strong>Also, <span style=\"color: #33cccc; background-color: #333333;\">refer to the playbook execution history for more details on error<\/span><\/strong><\/em><\/span><\/p>"
+                    "content": "<p>{{vars.input.records[0].content}}<\/p>\n<p>&nbsp;<\/p>\n<p><span style=\"color: #e03e2d;\"><em><strong>Error:<\/strong><\/em><\/span><\/p>\n<p><span style=\"color: #33cccc;\"><em><strong>Command execution is failed.&nbsp;<\/strong><\/em><\/span><\/p>\n<p><span style=\"color: #33cccc;\"><em><strong>Please refer to the \"$Bot --help\" to ensure proper command syntax is given.<\/strong><\/em><\/span><\/p>\n<p><span style=\"color: #33cccc;\"><em><strong>Also, <span style=\"color: #33cccc;\">refer to the playbook execution history for more details on error<\/span><\/strong><\/em><\/span><\/p>"
                 },
                 "_showJson": false,
                 "operation": "Overwrite",
@@ -311,7 +310,7 @@
             "description": null,
             "arguments": {
                 "resource": {
-                    "content": "<p>{{vars.input.records[0].content}}<\/p>\n<p>&nbsp;<\/p>\n<p><span style=\"color: #e03e2d; background-color: #333333;\"><em><strong>Error:<\/strong><\/em><\/span><\/p>\n<p><span style=\"color: #33cccc; background-color: #333333;\"><em><strong>Invalid Bot command has been provided.<\/strong><\/em><\/span><\/p>\n<p><span style=\"color: #33cccc; background-color: #333333;\"><em><strong>Please refer to the \"$Bot --help\" for more details<\/strong><\/em><\/span><\/p>"
+                    "content": "<p>{{vars.input.records[0].content}}<\/p>\n<p>&nbsp;<\/p>\n<p><span style=\"color: #e03e2d;\"><em><strong>Error:<\/strong><\/em><\/span><\/p>\n<p><span style=\"color: #33cccc;\"><em><strong>Invalid Bot command has been provided.<\/strong><\/em><\/span><\/p>\n<p><span style=\"color: #33cccc;\"><em><strong>Please refer to the \"$Bot --help\" for more details<\/strong><\/em><\/span><\/p>"
                 },
                 "_showJson": false,
                 "operation": "Overwrite",
@@ -461,15 +460,10 @@
     ],
     "priority": null,
     "uuid": "9337b2da-8612-4aa7-b1ef-51c548c0cf46",
-    "recordTags": [
-        "PostCreate"
-    ],
-    "id": "737",
-    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1645784396.659421,
-    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1645784396.659421,
     "owners": [],
     "isPrivate": false,
-    "deletedAt": null
+    "deletedAt": null,
+    "recordTags": [
+        "PostCreate"
+    ]
 }

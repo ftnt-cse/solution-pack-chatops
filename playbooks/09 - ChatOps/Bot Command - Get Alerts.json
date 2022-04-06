@@ -16,7 +16,6 @@
         "commentIRI"
     ],
     "synchronous": false,
-    "lastModifyDate": 1645784396,
     "collection": "\/api\/3\/workflow_collections\/73f87b6d-26fe-4c47-80cb-bc671717c5eb",
     "versions": [],
     "triggerStep": "\/api\/3\/workflow_steps\/90ce2ed4-3b85-4e67-a46d-de75bf018fbc",
@@ -51,9 +50,9 @@
             "description": null,
             "arguments": {
                 "resource": {
-                    "content": "<p><span style=\"color: #ffffff;\">{{vars.input.params.content}}<\/span><\/p>\n<p>&nbsp;<\/p>\n<p><span style=\"color: #33cccc; background-color: #333333;\"><em><strong>Alert Details:<\/strong><\/em><\/span><\/p>\n<p>&nbsp;<\/p>\n<table border=\"2\">\n<tbody>\n<tr>\n<td width=\"20%\">Name<\/td>\n<td>{{vars.steps.Get_Alerts_Details[0].name}}<\/td>\n<\/tr>\n<tr>\n<td width=\"20%\">Description<\/td>\n<td>{{vars.steps.Get_Alerts_Details[0].description}}<\/td>\n<\/tr>\n<tr>\n<td>Alert Link<\/td>\n<td><a href=\"https:\/\/{{globalVars.Server_fqhn}}\/modules\/alerts\/{{vars.steps.Get_Alerts_Details[0].uuid}}\">Alert #{{vars.input.params.ID}}<\/a><\/td>\n<\/tr>\n<\/tbody>\n<\/table>\n<p>&nbsp;<\/p>"
+                    "content": "<p><span style=\"color: #ffffff;\">{{vars.input.params.content}}<\/span><\/p>\n<p>&nbsp;<\/p>\n<p><span style=\"color: #33cccc;\"><em><strong>Alert Details:<\/strong><\/em><\/span><\/p>\n<p>&nbsp;<\/p>\n<table border=\"2\">\n<tbody>\n<tr>\n<td width=\"20%\">Name<\/td>\n<td>{{vars.steps.Get_Alerts_Details[0].name}}<\/td>\n<\/tr>\n<tr>\n<td width=\"20%\">Description<\/td>\n<td>{{vars.steps.Get_Alerts_Details[0].description}}<\/td>\n<\/tr>\n<tr>\n<td>Alert Link<\/td>\n<td><a href=\"https:\/\/{{globalVars.Server_fqhn}}\/modules\/alerts\/{{vars.steps.Get_Alerts_Details[0].uuid}}\">Alert #{{vars.input.params.ID}}<\/a><\/td>\n<\/tr>\n<\/tbody>\n<\/table>\n<p>&nbsp;<\/p>"
                 },
-                "_showJson": true,
+                "_showJson": false,
                 "operation": "Overwrite",
                 "collection": "{{vars.input.params.commentIRI}}",
                 "__recommend": [],
@@ -100,9 +99,9 @@
             "description": null,
             "arguments": {
                 "resource": {
-                    "content": "<p><span style=\"color: #ffffff;\">{{vars.input.params.content}}<\/span><\/p>\n<p>&nbsp;<\/p>\n<p><em><span style=\"color: #33cccc; background-color: #333333;\"><strong>Alert Not Found <br><\/strong><\/span><\/em><\/p>\n<p><em><span style=\"color: #33cccc; background-color: #333333;\">&nbsp;<\/span><\/em><\/p>"
+                    "content": "<p><span style=\"color: #ffffff;\">{{vars.input.params.content}}<\/span><\/p>\n<p>&nbsp;<\/p>\n<p><em><span style=\"color: #33cccc;\"><strong>Alert Not Found <br \/><\/strong><\/span><\/em><\/p>\n<p><em><span style=\"color: #33cccc;\">&nbsp;<\/span><\/em><\/p>"
                 },
-                "_showJson": true,
+                "_showJson": false,
                 "operation": "Overwrite",
                 "collection": "{{vars.input.params.commentIRI}}",
                 "__recommend": [],
@@ -188,16 +187,11 @@
     ],
     "priority": null,
     "uuid": "1016f64b-f3f8-4f72-a9c0-cf4d1b961a31",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
     "recordTags": [
         "Subroutine",
         "Bot - Execute commands"
-    ],
-    "id": "738",
-    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1645784396.660937,
-    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1645784396.660937,
-    "owners": [],
-    "isPrivate": false,
-    "deletedAt": null
+    ]
 }

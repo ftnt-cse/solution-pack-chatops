@@ -16,7 +16,6 @@
         "commentIRI"
     ],
     "synchronous": false,
-    "lastModifyDate": 1645784396,
     "collection": "\/api\/3\/workflow_collections\/73f87b6d-26fe-4c47-80cb-bc671717c5eb",
     "versions": [],
     "triggerStep": "\/api\/3\/workflow_steps\/0d4ae3b2-cf2c-4e95-9dc8-3d6a821d3953",
@@ -27,9 +26,9 @@
             "description": null,
             "arguments": {
                 "resource": {
-                    "content": "<p>{{vars.input.params.content}}<\/p>\n<p>&nbsp;<\/p>\n<p><span style=\"color: #33cccc; background-color: #333333;\"><strong><em>Incidents Details :<\/em><\/strong><\/span><\/p>\n<p>&nbsp;<\/p>\n<table border=\"2\">\n<tbody>\n<tr>\n<td width=\"20%\">Name<\/td>\n<td>{{vars.steps.Get_Incident_Details[0].name}}<\/td>\n<\/tr>\n<tr>\n<td width=\"20%\">Description<\/td>\n<td>{{vars.steps.Get_Incident_Details[0].description}}<\/td>\n<\/tr>\n<tr>\n<td>Incident Link<\/td>\n<td><a href=\"https:\/\/{{globalVars.Server_fqhn}}\/modules\/incidents\/{{vars.steps.Get_Incident_Details[0].uuid}}\">Incident #{{vars.input.params.IncidentID}}<\/a><\/td>\n<\/tr>\n<\/tbody>\n<\/table>"
+                    "content": "<p>{{vars.input.params.content}}<\/p>\n<p>&nbsp;<\/p>\n<p><span style=\"color: #33cccc;\"><strong><em>Incidents Details :<\/em><\/strong><\/span><\/p>\n<p>&nbsp;<\/p>\n<table border=\"2\">\n<tbody>\n<tr>\n<td width=\"20%\">Name<\/td>\n<td>{{vars.steps.Get_Incident_Details[0].name}}<\/td>\n<\/tr>\n<tr>\n<td width=\"20%\">Description<\/td>\n<td>{{vars.steps.Get_Incident_Details[0].description}}<\/td>\n<\/tr>\n<tr>\n<td>Incident Link<\/td>\n<td><a href=\"https:\/\/{{globalVars.Server_fqhn}}\/modules\/incidents\/{{vars.steps.Get_Incident_Details[0].uuid}}\">Incident #{{vars.input.params.IncidentID}}<\/a><\/td>\n<\/tr>\n<\/tbody>\n<\/table>"
                 },
-                "_showJson": true,
+                "_showJson": false,
                 "operation": "Overwrite",
                 "collection": "{{vars.input.params.commentIRI}}",
                 "__recommend": [],
@@ -80,7 +79,7 @@
             "description": null,
             "arguments": {
                 "resource": {
-                    "content": "<p>{{vars.input.params.content}}<\/p>\n<p>&nbsp;<\/p>\n<p><span style=\"color: #33cccc; background-color: #333333;\"><em><strong>Incident Not Found&nbsp;<\/strong><\/em><\/span><\/p>"
+                    "content": "<p>{{vars.input.params.content}}<\/p>\n<p>&nbsp;<\/p>\n<p><span style=\"color: #33cccc;\"><em><strong>Incident Not Found&nbsp;<\/strong><\/em><\/span><\/p>"
                 },
                 "_showJson": false,
                 "operation": "Overwrite",
@@ -186,16 +185,11 @@
     ],
     "priority": null,
     "uuid": "cabc5f48-6c89-4c9b-b55a-e4e9e9a7bc87",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
     "recordTags": [
         "Subroutine",
         "Bot - Execute commands"
-    ],
-    "id": "739",
-    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1645784396.661301,
-    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1645784396.661301,
-    "owners": [],
-    "isPrivate": false,
-    "deletedAt": null
+    ]
 }
