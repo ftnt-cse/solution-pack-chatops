@@ -14,6 +14,7 @@
         }
     ],
     "prerequisite": "",
+    "certified": "false",
     "publisher": "Fortinet",
     "description": "This solution pack implements a set of Chat-bot commands that provisions to get information of alert, incident or indicator records.",
     "help": "https:\/\/github.com\/fortinet-fortisoar\/solution-pack-chatops\/blob\/develop\/README.md",
