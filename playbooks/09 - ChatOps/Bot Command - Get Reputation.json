@@ -17,7 +17,6 @@
         "commentIRI"
     ],
     "synchronous": false,
-    "lastModifyDate": 1645790928,
     "collection": "\/api\/3\/workflow_collections\/73f87b6d-26fe-4c47-80cb-bc671717c5eb",
     "versions": [],
     "triggerStep": "\/api\/3\/workflow_steps\/dc3ae6c2-fe23-46fa-98c7-54ce0f305887",
@@ -112,11 +111,12 @@
             "arguments": {
                 "resource": {
                     "alerts": "{{vars.input.params.alertID}}",
-                    "content": "<p>{{vars.input.params.content}}<\/p>\n<p>&nbsp;<\/p>\n<p><em><strong><span style=\"background-color: #333333; color: #3366ff;\"><span style=\"color: #33cccc;\">Reputation Details<\/span>:<\/span><\/strong><\/em><\/p>\n<p><span style=\"font-size: 12pt;\"><strong>Seems :<\/strong>{% if vars.result.reputation == 'Malicious' %}<strong><span style=\"color: #ff0000;\">{{vars.result.reputation}}<\/span><\/strong>{% elif vars.result.reputation == 'Good' %}<strong><span style=\"color: #99cc00;\">{{vars.result.reputation}}<\/span><\/strong>{% else %}<span style=\"color: #3366ff;\"><strong>{{vars.result.reputation}}<\/strong><\/span>{% endif %}<\/span><\/p>\n<p>{{vars.result.enrichment_summary}}<\/p>\n<p>&nbsp;<\/p>"
+                    "content": "<p>{{vars.input.params.content}}<\/p>\n<p>&nbsp;<\/p>\n<p><em><strong><span style=\"color: #3366ff;\"><span style=\"color: #33cccc;\">Reputation Details<\/span>:<\/span><\/strong><\/em><\/p>\n<p><span style=\"font-size: 12pt;\"><strong>Seems :<\/strong>{% if vars.result.reputation == 'Malicious' %}<strong><span style=\"color: #ff0000;\">{{vars.result.reputation}}<\/span><\/strong>{% elif vars.result.reputation == 'Good' %}<strong><span style=\"color: #99cc00;\">{{vars.result.reputation}}<\/span><\/strong>{% else %}<span style=\"color: #3366ff;\"><strong>{{vars.result.reputation}}<\/strong><\/span>{% endif %}<\/span><\/p>\n<p>{{vars.result.enrichment_summary}}<\/p>\n<p>&nbsp;<\/p>"
                 },
                 "_showJson": false,
                 "operation": "Overwrite",
                 "collection": "{{vars.input.params.commentIRI}}",
+                "__recommend": [],
                 "tagsOperation": "OverwriteTags",
                 "collectionType": "\/api\/3\/comments",
                 "fieldOperation": {
@@ -222,7 +222,7 @@
             "description": null,
             "arguments": {
                 "resource": {
-                    "content": "<p>{{vars.input.params.content}}<\/p>\n<p>&nbsp;<\/p>\n<p><span style=\"color: #e03e2d; background-color: #333333;\"><em><strong>Error:<\/strong><\/em><\/span><\/p>\n<p><span style=\"color: #33cccc; background-color: #333333;\"><em><strong>Provided indicator value is invalid.<br \/><\/strong><\/em><\/span><\/p>\n<p><span style=\"color: #33cccc; background-color: #333333;\"><em><strong>Please refer to the \"$Bot --help\" to ensure proper command syntax is given.<\/strong><\/em><\/span><\/p>\n<p><span style=\"color: #33cccc; background-color: #333333;\"><em><strong>Also, <span style=\"color: #33cccc; background-color: #333333;\">refer to the playbook execution history for more details on error<\/span><\/strong><\/em><\/span><\/p>"
+                    "content": "<p>{{vars.input.params.content}}<\/p>\n<p>&nbsp;<\/p>\n<p><span style=\"color: #e03e2d;\"><em><strong>Error:<\/strong><\/em><\/span><\/p>\n<p><span style=\"color: #33cccc;\"><em><strong>Provided indicator value is invalid.<br \/><\/strong><\/em><\/span><\/p>\n<p><span style=\"color: #33cccc;\"><em><strong>Please refer to the \"$Bot --help\" to ensure proper command syntax is given.<\/strong><\/em><\/span><\/p>\n<p><span style=\"color: #33cccc;\"><em><strong>Also, <span style=\"color: #33cccc;\">refer to the playbook execution history for more details on error<\/span><\/strong><\/em><\/span><\/p>"
                 },
                 "_showJson": false,
                 "operation": "Append",
@@ -344,16 +344,11 @@
     ],
     "priority": null,
     "uuid": "cc0e8cf6-b481-4138-b548-e0b594b407c7",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
     "recordTags": [
         "Subroutine",
         "Bot - Execute commands"
-    ],
-    "id": "741",
-    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1645784396.662,
-    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1645790929.219275,
-    "owners": [],
-    "isPrivate": false,
-    "deletedAt": null
+    ]
 }

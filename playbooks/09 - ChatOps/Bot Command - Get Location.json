@@ -16,7 +16,6 @@
         "commentIRI"
     ],
     "synchronous": false,
-    "lastModifyDate": 1645793103,
     "collection": "\/api\/3\/workflow_collections\/73f87b6d-26fe-4c47-80cb-bc671717c5eb",
     "versions": [],
     "triggerStep": "\/api\/3\/workflow_steps\/05e3349b-a22d-466f-a90a-ca1a9424a1c2",
@@ -59,7 +58,7 @@
             "description": null,
             "arguments": {
                 "resource": {
-                    "content": "<p>{{vars.input.params.content}}<\/p>\n<p>&nbsp;<\/p>\n<p><span style=\"color: #33cccc;\"><em><span style=\"background-color: #333333;\"><strong>Geo Location Details:<\/strong><\/span><\/em><\/span><\/p>\n<p>&nbsp;<\/p>\n<table border=\"2\">\n<tbody>\n<tr>\n<td width=\"30%\"><span style=\"color: #ffffff;\">IP<\/span><\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0].ip}}<\/td>\n<\/tr>\n<tr>\n<td width=\"30%\"><span style=\"color: #ffffff;\">Type<\/span><\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0].type}}<\/td>\n<\/tr>\n<tr>\n<td width=\"30%\"><span style=\"color: #ffffff;\">Region<\/span><\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0]['region_name']}}<\/td>\n<\/tr>\n<tr>\n<td width=\"30%\"><span style=\"color: #ffffff;\">Capital&nbsp;<\/span><\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0].location.capital}}<\/td>\n<\/tr>\n<tr>\n<td width=\"30%\"><span style=\"color: #ffffff;\">Country<\/span><\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0]['country_name']}}<\/td>\n<\/tr>\n<tr>\n<td width=\"30%\"><span style=\"color: #ffffff;\">Flag<\/span><\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0].location['country_flag_emoji']}}<\/td>\n<\/tr>\n<tr>\n<td width=\"30%\"><span style=\"color: #ffffff;\">Continent<\/span><\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0]['continent_name']}}<\/td>\n<\/tr>\n<\/tbody>\n<\/table>"
+                    "content": "<p>{{vars.input.params.content}}<\/p>\n<p>&nbsp;<\/p>\n<p><span style=\"color: #33cccc;\"><em><strong>Geo Location Details:<\/strong><\/em><\/span><\/p>\n<p>&nbsp;<\/p>\n<table border=\"2\">\n<tbody>\n<tr>\n<td width=\"30%\">IP<\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0].ip}}<\/td>\n<\/tr>\n<tr>\n<td width=\"30%\">Type<\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0].type}}<\/td>\n<\/tr>\n<tr>\n<td width=\"30%\">Region<\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0]['region_name']}}<\/td>\n<\/tr>\n<tr>\n<td width=\"30%\">Capital&nbsp;<\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0].location.capital}}<\/td>\n<\/tr>\n<tr>\n<td width=\"30%\">Country<\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0]['country_name']}}<\/td>\n<\/tr>\n<tr>\n<td width=\"30%\">Flag<\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0].location['country_flag_emoji']}}<\/td>\n<\/tr>\n<tr>\n<td width=\"30%\">Continent<\/td>\n<td style=\"width: 417px;\">{{vars.result.data[0]['continent_name']}}<\/td>\n<\/tr>\n<\/tbody>\n<\/table>"
                 },
                 "_showJson": false,
                 "operation": "Overwrite",
@@ -180,7 +179,7 @@
             "description": null,
             "arguments": {
                 "resource": {
-                    "content": "<p>{{vars.input.params.content}}<\/p>\n<p>&nbsp;<\/p>\n<p><span style=\"color: #33cccc;\"><em><span style=\"background-color: #333333;\"><strong>Geo Location Details Not Found<br><\/strong><\/span><\/em><\/span><\/p>"
+                    "content": "<p>{{vars.input.params.content}}<\/p>\n<p>&nbsp;<\/p>\n<p><span style=\"color: #33cccc;\"><em><strong>Geo Location Details Not Found<br \/><\/strong><\/em><\/span><\/p>"
                 },
                 "_showJson": false,
                 "operation": "Overwrite",
@@ -267,16 +266,11 @@
     ],
     "priority": null,
     "uuid": "4bc1079d-2ec9-4375-9176-eec17c3b6e0a",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
     "recordTags": [
         "Subroutine",
         "Bot - Execute commands"
-    ],
-    "id": "740",
-    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1645784396.661662,
-    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1645793104.204849,
-    "owners": [],
-    "isPrivate": false,
-    "deletedAt": null
+    ]
 }

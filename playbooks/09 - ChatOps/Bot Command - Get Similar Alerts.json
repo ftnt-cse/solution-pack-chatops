@@ -16,7 +16,6 @@
         "content"
     ],
     "synchronous": false,
-    "lastModifyDate": 1645784396,
     "collection": "\/api\/3\/workflow_collections\/73f87b6d-26fe-4c47-80cb-bc671717c5eb",
     "versions": [],
     "triggerStep": "\/api\/3\/workflow_steps\/e4f49dcf-7014-43b3-ac38-75f505b4e96b",
@@ -173,16 +172,11 @@
     ],
     "priority": null,
     "uuid": "1a12691d-9345-42a5-a781-f60b6ea63099",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
     "recordTags": [
         "Subroutine",
         "Bot - Execute commands"
-    ],
-    "id": "742",
-    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1645784396.662372,
-    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1645784396.662372,
-    "owners": [],
-    "isPrivate": false,
-    "deletedAt": null
+    ]
 }

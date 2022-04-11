@@ -2,7 +2,7 @@
     {
         "id": 7,
         "name": "Server_fqhn",
-        "value": "tenant.fortinet.com",
+        "value": "master.fortisoar.in",
         "default_value": null
     }
 ]

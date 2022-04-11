@@ -14,21 +14,37 @@
         }
     ],
     "prerequisite": "",
-    "certified": "true",
+    "certified": "false",
     "publisher": "Fortinet",
-    "description": "This solution pack implements a set of Chat-bot commands that provisions to get information of alert, incident or indicator records.",
+    "description": "This solution pack implements a set of Chat-bot commands that provisions to get information of alert, incident or indicator records. Few important integrations used in the solution pack are IPStack and VirusTotal.",
     "help": "https:\/\/github.com\/fortinet-fortisoar\/solution-pack-chatops\/blob\/develop\/README.md",
     "category": [],
-    "supportInfo": "support@fortinet.com",
+    "supportInfo": "",
     "iconLarge": null,
     "fsrMinCompatibility": "7.2.0",
     "date": "2022-02-15T12:40:22+00:00",
-    "exported_from": "tenant.fortisoar.com",
-    "exported_by": "CS Admin",
     "contents": {
         "playbooks": [
             {
                 "name": "09 - ChatOps"
+            }
+        ],
+        "globalVariables": [
+            {
+                "id": 7,
+                "name": "Server_fqhn",
+                "value": "master.fortisoar.in",
+                "default_value": null
+            }
+        ],
+        "connectors": [
+            {
+                "name": "IPStack",
+                "apiName": "ipstack"
+            },
+            {
+                "name": "VirusTotal",
+                "apiName": "virustotal"
             }
         ]
     }
