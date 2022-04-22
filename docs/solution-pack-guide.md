@@ -4,7 +4,7 @@
 
 ### Syntax
 
-To run the command type *$* and then the command and arguments. You need to type the command in the 'Comments' tab under 'Workspace' as shown below:
+The syntax of the command is: *$* command and followed by arguments. You need to type the command in the 'Comments' tab under 'Workspace' as shown below:
 
 For Example. *$Get Alert 1* (Here 1 is Alert ID)
 
