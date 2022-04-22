@@ -11,11 +11,11 @@
 
 ### Introduction
 
-*ChatOps Solution Pack* is designed to provide playbooks that facilitate users to perform a particular task using a set of commands using ‘Comments’ in the Workspace panel.
+*ChatOps Solution Pack* is designed to provide playbooks that facilitate users to perform a particular task using a set of commands. Please open any record like Alert or Incident, Expand Workspace panel and use ‘Comments’ to type your commands and observe the results.
 
 ### Usage
 
-More information about the ChatOps Solution Pack can be found [here](https://github.com/fortinet-fortisoar/solution-pack-chatops/blob/develop/docs/solution-pack-guide.md).
+More information can be found [here](https://github.com/fortinet-fortisoar/solution-pack-chatops/blob/develop/docs/solution-pack-guide.md).
 
 ## Prerequisites
 
