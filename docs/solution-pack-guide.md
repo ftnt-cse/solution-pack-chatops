@@ -2,7 +2,7 @@
 
 ## ChatOps Commands
 
-*ChatOps Solution Pack* facilitates you to use the ‘Workspace’ as a command-line tool and run commands to perform a particular task.
+### Syntax
 
 To run the command type *$* and then the command and arguments. You need to type the command in the 'Comments' tab under 'Workspace' as shown below:
 
@@ -12,11 +12,11 @@ For Example. *$Get Alert 1* (Here 1 is Alert ID)
 
     ![Open Workspace](media/openWorkspace.png)
 
-- Add a command as a new comment
+- Type command in comment field
 
     ![Workspace Command](media/workspaceCommand.png)
 
-- Once the command is added as a comment, it will provide the respective output
+- The playbooks associated with command will execute in background and provides the respective command output
 
     ![Command Output](media/commandOutput.png)
 

@@ -15,7 +15,7 @@
 
 ### Usage
 
-More information about the ChatOps Solution Pack can be found [here](https://github.com/fortinet-fortisoar/solution-pack-chatops/blob/develop/docs/solution-pack.md).
+More information about the ChatOps Solution Pack can be found [here](https://github.com/fortinet-fortisoar/solution-pack-chatops/blob/develop/docs/solution-pack-guide.md).
 
 ## Prerequisites
 
