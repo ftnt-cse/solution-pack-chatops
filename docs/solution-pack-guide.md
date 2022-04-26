@@ -4,7 +4,7 @@
 
 ### Syntax
 
-The syntax of the command is: *$* command and followed by arguments. You need to type the command in the 'Comments' tab under 'Workspace' as shown below:
+The syntax of this command is: *$* command and followed by arguments. You need to type the command in the 'Comments' tab under 'Workspace' as shown below:
 
 For Example. *$Get Alert 1* (Here 1 is Alert ID)
 
@@ -12,11 +12,11 @@ For Example. *$Get Alert 1* (Here 1 is Alert ID)
 
     ![Open Workspace](media/openWorkspace.png)
 
-- Type command in comment field
+- Type command in the comment field
 
     ![Workspace Command](media/workspaceCommand.png)
 
-- The playbooks associated with command will execute in background and provides the respective command output
+- The playbooks associated with command will execute in the background and provides the respective command output
 
     ![Command Output](media/commandOutput.png)
 

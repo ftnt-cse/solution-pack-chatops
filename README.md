@@ -11,11 +11,11 @@
 
 ### Introduction
 
-*ChatOps Solution Pack* is designed to provide playbooks that facilitate users to perform a particular task using a set of commands. Please open any record like Alert or Incident, Expand Workspace panel and use ‘Comments’ to type your commands and observe the results.
+*ChatOps Solution Pack* is designed to provide playbooks that facilitate users to perform a particular task using a set of commands. Please open any record like Alert or Incident, expand the **Workspace** panel and use ‘Comments’ to type your commands and observe the results.
 
 ### Usage
 
-More information can be found [here](https://github.com/fortinet-fortisoar/solution-pack-chatops/blob/develop/docs/solution-pack-guide.md).
+For more information, refer [here](https://github.com/fortinet-fortisoar/solution-pack-chatops/blob/develop/docs/solution-pack-guide.md).
 
 ## Prerequisites
 
@@ -36,7 +36,7 @@ More information can be found [here](https://github.com/fortinet-fortisoar/solut
 
 2. Global Variable(s)
 
-    - Server_fqhn
+    - `Server_fqhn`
 
 3. Playbook Collection(s)
 
