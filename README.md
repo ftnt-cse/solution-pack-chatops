@@ -1,5 +1,3 @@
-# ChatOps Solution Pack
-
 ## Release Information
 
 - Solution Pack Version: 1.0.0
