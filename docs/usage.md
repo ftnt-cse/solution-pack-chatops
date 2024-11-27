@@ -19,6 +19,14 @@ For Example. `$Get Alert 1` (Here 1 is Alert ID)
 
     ![Command Output](https://github.com/fortinet-fortisoar/solution-pack-chatops/blob/develop/docs/res/command-output.png)
 
+- The $bot option allow users to run actions from connectors and display the response, the action could be to fetch data such as indicator reputation
+
+    ![Command Output](https://github.com/fortinet-fortisoar/solution-pack-chatops/blob/develop/docs/res/enrichment.png)
+
+- The $bot can also be used to run remediation actions such as blocking an IP address on an NGFW
+
+    ![Command Output](https://github.com/fortinet-fortisoar/solution-pack-chatops/blob/develop/docs/res/blockip.png)
+
 ChatOps Solution Pack supports following commands:
 
 |Command|Description|

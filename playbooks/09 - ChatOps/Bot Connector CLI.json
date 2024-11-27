@@ -1,0 +1,607 @@
+{
+    "@context": "\/api\/3\/contexts\/Workflow",
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Bot Connector CLI",
+    "aliasName": null,
+    "tag": null,
+    "description": "Process user commands",
+    "isActive": true,
+    "debug": true,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/73f87b6d-26fe-4c47-80cb-bc671717c5eb",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/c4b8fac5-aaaf-4391-b36a-872d89372179",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Build Query Payload",
+            "description": null,
+            "arguments": {
+                "_action": "{{vars.payload.update({'operation':vars.action})}}",
+                "_config": "{{vars.payload.update({'config':vars.config_id})}}",
+                "_params": "{{vars.payload.update({'params':vars.params})}}",
+                "_version": "{{vars.payload.update({'version':vars.connector_version})}}",
+                "_connector_name": "{{vars.payload.update({'connector':vars.connector})}}"
+            },
+            "status": null,
+            "top": "1350",
+            "left": "723",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "d2359291-4ac8-46bf-ae7d-3b998144d066"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "action": "{{vars.content|regex_search(\"(?<=--action=)[\\w_-]+\")}}",
+                "params": "{}",
+                "payload": "{\n  \"connector\": \"\",\n  \"version\": \"\",\n  \"config\": \"\",\n  \"operation\": \"\",\n  \"params\": \"\",\n  \"audit\": false\n}",
+                "connector": "{{vars.content|regex_search(\"(?<=--connector=)[\\w_-]+\")}}",
+                "this_comment": "{{((vars.input.records[0]['@id']+ \"?$relationships=true\")|fromIRI)}}",
+                "params_unparsed": "{{vars.content|regex_findall('--param=\"([^\"]+)\"')}}"
+            },
+            "status": null,
+            "top": "270",
+            "left": "723",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "a58f2e56-278b-4e0b-9e79-f2b2a921576d"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Connector Attributes Parser",
+            "description": null,
+            "arguments": {
+                "_params": "{%- for entry in vars.params_unparsed -%}\n{%- set _entry=entry.split(\":\")-%}\n{{vars.params.update({_entry[0]:_entry[1]})}}\n{%- endfor -%}",
+                "connector_version": "{{vars.steps.Find_Connector.data['hydra:member'][0].version}}",
+                "related_alerts_iris": "{{vars.this_comment|json_query('alerts[][\"@id\"][]')}}",
+                "related_incidents_iri": "{{vars.this_comment|json_query('incidents[][\"@id\"][]')}}"
+            },
+            "status": null,
+            "top": "540",
+            "left": "723",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "0995b427-564c-4c3d-ac2c-d52cadec1c47"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Connector Found",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "yes",
+                        "step_iri": "\/api\/3\/workflow_steps\/4f50a467-b980-4744-8408-ca0139a79ed8",
+                        "condition": "{{ vars.steps.Find_Connector.data['hydra:totalItems'] >= 1 }}",
+                        "step_name": "Get Connector Attributes"
+                    },
+                    {
+                        "option": "no",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/c59f2e42-675f-43f3-8699-4472b8ee27dd",
+                        "step_name": "Connector Not Found"
+                    }
+                ],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "945",
+            "left": "723",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "7abe5fd4-04f3-4257-aa22-daf64411b303"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Connector Not Found",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "alerts": "{{vars.related_alerts_iris}}",
+                    "people": [],
+                    "content": "<p><span style=\"color: rgb(230, 126, 35);\"><strong>Error: <\/strong><\/span>Connector <span style=\"color: rgb(230, 126, 35);\">{{vars.connector}} <\/span>Not Found<\/p>",
+                    "replyTo": "{{vars.input.records[0]['@id']}}",
+                    "__replace": "",
+                    "incidents": "{{vars.related_incidents_iri}}",
+                    "isImportant": false,
+                    "peopleUpdated": false
+                },
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/comments",
+                "__recommend": [],
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "1080",
+            "left": "548",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "group": null,
+            "uuid": "c59f2e42-675f-43f3-8699-4472b8ee27dd"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Failed Query",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "alerts": "{{vars.related_alerts_iris}}",
+                    "people": [],
+                    "content": "<p><strong>Query Failed<\/strong>: {{vars.steps.Run_Query.data.message}}<\/p>",
+                    "replyTo": "{{vars.input.records[0]['@id']}}",
+                    "__replace": "",
+                    "incidents": "{{vars.related_incidents_iri}}",
+                    "isImportant": false,
+                    "peopleUpdated": false
+                },
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/comments",
+                "__recommend": [],
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "1755",
+            "left": "548",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "group": null,
+            "uuid": "866a74ef-8e1a-4393-a3bf-3f8e0c758b67"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Find Connector",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "\/api\/query\/solutionpacks?$limit=1&$page=1&$search={{vars.connector}}",
+                    "body": "{\n  \"sort\": [\n    {\n      \"field\": \"label\",\n      \"direction\": \"ASC\"\n    }\n  ],\n  \"page\": 1,\n  \"limit\": 1,\n  \"logic\": \"AND\",\n  \"filters\": [\n    {\n      \"field\": \"type\",\n      \"operator\": \"in\",\n      \"value\": [\n        \"connector\"\n      ]\n    },\n    {\n      \"field\": \"installed\",\n      \"operator\": \"eq\",\n      \"value\": true\n    },\n    {\n      \"logic\": \"OR\",\n      \"filters\": [\n        {\n          \"field\": \"development\",\n          \"operator\": \"eq\",\n          \"value\": false\n        },\n        {\n          \"field\": \"type\",\n          \"operator\": \"eq\",\n          \"value\": \"widget\"\n        },\n        {\n          \"field\": \"type\",\n          \"operator\": \"eq\",\n          \"value\": \"solutionpack\"\n        }\n      ]\n    }\n  ],\n  \"search\": \"{{vars.connector}}\"\n}",
+                    "method": "POST"
+                },
+                "version": "3.4.0",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "FSR: Make FortiSOAR API Call",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "405",
+            "left": "723",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "316a19d8-2bfa-4556-8d9f-6b287e8155c1"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Connector Attributes",
+            "description": null,
+            "arguments": {
+                "_params": "{%- for entry in vars.params_unparsed -%}\n{%- set _entry=entry.split(\":\")-%}\n{{vars.params.update({_entry[0]:_entry[1]})}}\n{%- endfor -%}",
+                "config_id": "{{(vars.connector_configs|yaql('$.where($.default = true).config_id')).0}}"
+            },
+            "status": null,
+            "top": "1080",
+            "left": "898",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "4f50a467-b980-4744-8408-ca0139a79ed8"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Connector Configurations",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "\/api\/integration\/connector_details\/{{vars.connector}}\/{{vars.connector_version}}\/",
+                    "body": "{}",
+                    "method": "POST"
+                },
+                "version": "3.4.0",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "FSR: Make FortiSOAR API Call",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "675",
+            "left": "723",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "c9f09d88-45b9-402d-b45e-b2bf5eb29ebd"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Output",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "alerts": "{{vars.related_alerts_iris}}",
+                    "people": [],
+                    "content": "<pre>{{ vars.steps.Run_Query.data.data| tojson(indent=2) }}<\/pre>",
+                    "replyTo": "{{vars.input.records[0]['@id']}}",
+                    "__replace": "",
+                    "incidents": "{{vars.related_incidents_iri}}",
+                    "isImportant": false,
+                    "peopleUpdated": false
+                },
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/comments",
+                "__recommend": [],
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "1755",
+            "left": "898",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "group": null,
+            "uuid": "2b3a9352-849f-4f28-a250-332bd6ac9568"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Params Found",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "yes",
+                        "step_iri": "\/api\/3\/workflow_steps\/d2359291-4ac8-46bf-ae7d-3b998144d066",
+                        "condition": "{{ vars.config_id|length > 0 and vars.action|length > 0 and vars.connector_version|length > 0 }}",
+                        "step_name": "Build Query Payload"
+                    },
+                    {
+                        "option": "no",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/c310a44b-7f86-4b83-9e62-93e7665a4757",
+                        "step_name": "Params Not Found"
+                    }
+                ],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "1215",
+            "left": "898",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "c78d8d58-49b3-4233-a511-0499a1667cfb"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Params Not Found",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "alerts": "{{vars.related_alerts_iris}}",
+                    "people": [],
+                    "content": "<p><span style=\"color: rgb(230, 126, 35);\"><strong>Error: <\/strong><\/span>Incorrect parameters, check connector's param and try again<\/p>",
+                    "replyTo": "{{vars.input.records[0]['@id']}}",
+                    "__replace": "",
+                    "incidents": "{{vars.related_incidents_iri}}",
+                    "isImportant": false,
+                    "peopleUpdated": false
+                },
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/comments",
+                "__recommend": [],
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "1350",
+            "left": "1073",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "group": null,
+            "uuid": "c310a44b-7f86-4b83-9e62-93e7665a4757"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Parse Connector Configs",
+            "description": null,
+            "arguments": {
+                "connector_configs": "{{vars.steps.Get_Connector_Configurations.data.data.configurations}}"
+            },
+            "status": null,
+            "top": "810",
+            "left": "723",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "b59f6c31-c226-4d16-b2b9-6c9efaf7ae75"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Query Successful",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "yes",
+                        "step_iri": "\/api\/3\/workflow_steps\/2b3a9352-849f-4f28-a250-332bd6ac9568",
+                        "condition": "{{ vars.steps.Run_Query.data.status != \"failed\" }}",
+                        "step_name": "Output"
+                    },
+                    {
+                        "option": "no",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/866a74ef-8e1a-4393-a3bf-3f8e0c758b67",
+                        "step_name": "Copy of Output"
+                    }
+                ],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "1620",
+            "left": "723",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "4c61e52b-fd25-4dbb-8089-f9505d8e66c5"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Run Query",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "\/api\/integration\/execute\/?format=json",
+                    "body": "{{vars.payload}}",
+                    "method": "POST"
+                },
+                "version": "3.4.0",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "FSR: Make FortiSOAR API Call",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "1485",
+            "left": "723",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "78dd0be8-5c57-4977-98f9-5a3303f5b1c5"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "resource": "comments",
+                "resources": [
+                    "comments"
+                ],
+                "__triggerLimit": true,
+                "step_variables": {
+                    "input": {
+                        "params": [],
+                        "records": [
+                            "{{vars.input.records[0]}}"
+                        ]
+                    },
+                    "content": "{{vars.input.records[0].content}}"
+                },
+                "triggerOnSource": true,
+                "fieldbasedtrigger": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "primitive",
+                            "field": "content",
+                            "value": "%$bot%",
+                            "operator": "like",
+                            "_operator": "like"
+                        },
+                        {
+                            "type": "primitive",
+                            "field": "content",
+                            "value": "%--connector=%",
+                            "operator": "like",
+                            "_operator": "like"
+                        }
+                    ]
+                },
+                "triggerOnReplicate": false
+            },
+            "status": null,
+            "top": "83",
+            "left": "723",
+            "stepType": "\/api\/3\/workflow_step_types\/ea155646-3821-4542-9702-b246da430a8d",
+            "group": null,
+            "uuid": "c4b8fac5-aaaf-4391-b36a-872d89372179"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Build Query Payload -> Run Query",
+            "targetStep": "\/api\/3\/workflow_steps\/78dd0be8-5c57-4977-98f9-5a3303f5b1c5",
+            "sourceStep": "\/api\/3\/workflow_steps\/d2359291-4ac8-46bf-ae7d-3b998144d066",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "cd6eeaa4-3a7e-4bfc-8f77-c6b0dd743f22"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Find Connector",
+            "targetStep": "\/api\/3\/workflow_steps\/316a19d8-2bfa-4556-8d9f-6b287e8155c1",
+            "sourceStep": "\/api\/3\/workflow_steps\/a58f2e56-278b-4e0b-9e79-f2b2a921576d",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "d6d92d64-e606-4316-b9e0-062ef485c5c2"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Connector Found -> Get Connector Attributes",
+            "targetStep": "\/api\/3\/workflow_steps\/4f50a467-b980-4744-8408-ca0139a79ed8",
+            "sourceStep": "\/api\/3\/workflow_steps\/7abe5fd4-04f3-4257-aa22-daf64411b303",
+            "label": "yes",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "b62820b9-51e9-439a-9dc2-2d2df163434f"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Copy of Params Found -> Copy of Output",
+            "targetStep": "\/api\/3\/workflow_steps\/866a74ef-8e1a-4393-a3bf-3f8e0c758b67",
+            "sourceStep": "\/api\/3\/workflow_steps\/4c61e52b-fd25-4dbb-8089-f9505d8e66c5",
+            "label": "no",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "59c11714-c9a3-4994-b417-7d1ad05f7e66"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Copy of Params Found -> Output",
+            "targetStep": "\/api\/3\/workflow_steps\/2b3a9352-849f-4f28-a250-332bd6ac9568",
+            "sourceStep": "\/api\/3\/workflow_steps\/4c61e52b-fd25-4dbb-8089-f9505d8e66c5",
+            "label": "yes",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "51058614-ef23-4e05-9652-891aafad86c7"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Find Connector -> Parser",
+            "targetStep": "\/api\/3\/workflow_steps\/0995b427-564c-4c3d-ac2c-d52cadec1c47",
+            "sourceStep": "\/api\/3\/workflow_steps\/316a19d8-2bfa-4556-8d9f-6b287e8155c1",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "fd577438-bb6e-4930-bd4e-a6165c936388"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Connector Attributes -> Params Found",
+            "targetStep": "\/api\/3\/workflow_steps\/c78d8d58-49b3-4233-a511-0499a1667cfb",
+            "sourceStep": "\/api\/3\/workflow_steps\/4f50a467-b980-4744-8408-ca0139a79ed8",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "309cc04a-10c3-4e91-9f03-0214696cdfb1"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Connector Configurations -> Parse Connector Configs",
+            "targetStep": "\/api\/3\/workflow_steps\/b59f6c31-c226-4d16-b2b9-6c9efaf7ae75",
+            "sourceStep": "\/api\/3\/workflow_steps\/c9f09d88-45b9-402d-b45e-b2bf5eb29ebd",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "c67a91d5-2da1-4782-a942-ae2338d4adbd"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Input Check -> Connector Not Found",
+            "targetStep": "\/api\/3\/workflow_steps\/c59f2e42-675f-43f3-8699-4472b8ee27dd",
+            "sourceStep": "\/api\/3\/workflow_steps\/7abe5fd4-04f3-4257-aa22-daf64411b303",
+            "label": "no",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "44ce1222-d541-4619-a839-33af5db8d799"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Params Found -> Build Query Payload",
+            "targetStep": "\/api\/3\/workflow_steps\/d2359291-4ac8-46bf-ae7d-3b998144d066",
+            "sourceStep": "\/api\/3\/workflow_steps\/c78d8d58-49b3-4233-a511-0499a1667cfb",
+            "label": "yes",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "3ccf433c-9ab1-4ffa-97f5-1e2d9b087e9a"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Params Found -> Copy of Connector Not Found",
+            "targetStep": "\/api\/3\/workflow_steps\/c310a44b-7f86-4b83-9e62-93e7665a4757",
+            "sourceStep": "\/api\/3\/workflow_steps\/c78d8d58-49b3-4233-a511-0499a1667cfb",
+            "label": "no",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "238a7f61-8943-4cf8-82d6-14f8032d7881"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Parse Connector Configs -> Connector Found",
+            "targetStep": "\/api\/3\/workflow_steps\/7abe5fd4-04f3-4257-aa22-daf64411b303",
+            "sourceStep": "\/api\/3\/workflow_steps\/b59f6c31-c226-4d16-b2b9-6c9efaf7ae75",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "ac7958a2-5298-4df5-88e6-2173bfe493e6"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Parser -> Copy of Find Connector",
+            "targetStep": "\/api\/3\/workflow_steps\/c9f09d88-45b9-402d-b45e-b2bf5eb29ebd",
+            "sourceStep": "\/api\/3\/workflow_steps\/0995b427-564c-4c3d-ac2c-d52cadec1c47",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "20bbc9d7-b582-4b26-b856-1fed3ce085d5"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Run Query -> Copy of Params Found",
+            "targetStep": "\/api\/3\/workflow_steps\/4c61e52b-fd25-4dbb-8089-f9505d8e66c5",
+            "sourceStep": "\/api\/3\/workflow_steps\/78dd0be8-5c57-4977-98f9-5a3303f5b1c5",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "afc566b5-cecb-4177-88e8-e18603a97970"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/a58f2e56-278b-4e0b-9e79-f2b2a921576d",
+            "sourceStep": "\/api\/3\/workflow_steps\/c4b8fac5-aaaf-4391-b36a-872d89372179",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "ea386c45-4078-4e0a-b810-a7330b0af33c"
+        }
+    ],
+    "groups": [
+        {
+            "@type": "WorkflowGroup",
+            "name": "CLI parameters",
+            "description": "Usage:\n$bot --connector=CONNECTOR_NAME --action=ACTION_NAME --param=PARAM1:VALUE1 --param=PARAM2:VALUE2...\nexample: $bot --connector=fortigate-firewall --action=block_ip --param=ip_addresses:192.0.2.132 --param=duration:3600",
+            "type": "note",
+            "isCollapsed": false,
+            "hasTriggerStep": false,
+            "hideInLogs": true,
+            "metadata": [],
+            "reusable": false,
+            "top": "80",
+            "left": "1060",
+            "height": "165",
+            "width": "498",
+            "uuid": "d88dad38-7fa5-493b-834e-d21bfc1b88ed",
+            "recordTags": []
+        }
+    ],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "b5a8909b-9f98-4cc2-8e8d-f6a394a03dfc",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": []
+}
